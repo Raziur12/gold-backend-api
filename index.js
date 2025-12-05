@@ -21,6 +21,7 @@ db.connect().catch(err => {
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/stores', require('./routes/stores'));
 app.use('/api/toppicks', require('./routes/topPicks'));
+app.use('/api/contact-us', require('./routes/contactUs'));
 
 app.get('/', (req, res) => {
     res.send('Hello from the Gold Price Comparison API!');
