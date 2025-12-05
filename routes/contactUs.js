@@ -4,7 +4,7 @@ const db = require('../db');
 const sql = require('mssql');
 
 // The hardcoded ID of the single contact us record
-const CONTACT_US_ID = 'BB7A6DC6-9EF6-4693-8B94-39D16FB6FB2A';
+const CONTACT_US_ID = 'BB7A60C6-9EF6-4693-8094-89016FB6FB2A';
 
 // GET the contact us details
 router.get('/', async (req, res) => {
