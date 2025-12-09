@@ -37,15 +37,17 @@ router.put('/', async (req, res) => {
 
   try {
     const pool = db.getPool();
-    
+
     await pool.request()
+      // Parameter names and sizes must match sp_ContactUs_Update:
+      // @Id, @Title, @Description, @Phone, @Whatsapp, @WorkingDays, @WorkingHours
       .input('Id', sql.UniqueIdentifier, CONTACT_US_ID)
-      .input('title', sql.NVarChar(100), title)
-      .input('description', sql.NVarChar(2000), description)
-      .input('phone', sql.NVarChar(15), phone)
-      .input('whatsapp', sql.NVarChar(15), whatsapp)
-      .input('working_days', sql.NVarChar(100), working_days)
-      .input('working_hours', sql.NVarChar(50), working_hours)
+      .input('Title', sql.NVarChar(200), title)
+      .input('Description', sql.NVarChar(sql.MAX), description)
+      .input('Phone', sql.NVarChar(50), phone)
+      .input('Whatsapp', sql.NVarChar(50), whatsapp)
+      .input('WorkingDays', sql.NVarChar(200), working_days)
+      .input('WorkingHours', sql.NVarChar(200), working_hours)
       .execute('dbo.sp_ContactUs_Update');
 
     res.json({ msg: 'Contact Us details updated successfully' });

@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const sql = require('mssql');
+const path = require('path');
 const db = require('./db'); // Import the new db module
 
 const app = express();
@@ -10,6 +11,9 @@ const port = process.env.API_PORT || 3001;
 // Middleware
 app.use(cors());
 app.use(express.json());
+
+// Serve static files for uploaded images
+app.use('/uploads', express.static(path.join(__dirname, 'public', 'uploads')));
 
 // Connect to the database when the application starts
 db.connect().catch(err => {

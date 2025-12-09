@@ -61,11 +61,12 @@ router.put('/', (req, res) => {
     try {
       const pool = db.getPool();
       await pool.request()
-        .input('title', sql.NVarChar(100), title)
-        .input('subtitle', sql.NVarChar(200), subtitle)
-        .input('description', sql.NVarChar(2000), description)
-        .input('image_url', sql.NVarChar, imageUrl)
+        // Parameter names and sizes must match sp_AboutUs_Update: @Id, @Title, @Subtitle, @Description, @ImageUrl
         .input('Id', sql.UniqueIdentifier, 'EADD1984-251F-4F1B-9F2B-513CE4AD76F8')
+        .input('Title', sql.NVarChar(300), title)
+        .input('Subtitle', sql.NVarChar(500), subtitle)
+        .input('Description', sql.NVarChar(sql.MAX), description)
+        .input('ImageUrl', sql.NVarChar(1000), imageUrl)
         .execute('dbo.sp_AboutUs_Update');
       res.json({ msg: 'About Us details updated successfully' });
     } catch (dbErr) {
