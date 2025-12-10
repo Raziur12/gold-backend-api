@@ -29,6 +29,7 @@ app.use('/api/contact-us', require('./routes/contactUs'));
 app.use('/api/about-us', require('./routes/aboutUs'));
 app.use('/api/subscriptions', require('./routes/subscriptions'));
 app.use('/api/favourites', require('./routes/favourites'));
+app.use('/api/settings', require('./routes/settings'));
 
 app.get('/', (req, res) => {
     res.send('Hello from the Gold Price Comparison API!');
