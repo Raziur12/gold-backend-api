@@ -34,9 +34,8 @@ router.get('/:key', async (req, res) => {
   }
 });
 
-// CREATE or UPDATE setting (upsert)
 router.post('/', async (req, res) => {
-  const { key, value } = req.body;
+  const { key, value, is_visual } = req.body;
 
   if (!key) {
     return res.status(400).json({ msg: 'key is required' });
@@ -47,6 +46,7 @@ router.post('/', async (req, res) => {
     await pool.request()
       .input('key', sql.NVarChar(100), key)
       .input('value', sql.NVarChar(500), value ?? '')
+      .input('is_visual', sql.Bit, is_visual ?? 1)
       .execute('dbo.sp_create_setting');
 
     res.json({ msg: 'Setting saved successfully' });
@@ -55,6 +55,7 @@ router.post('/', async (req, res) => {
     res.status(500).json({ msg: 'Database error', error: err.message });
   }
 });
+
 
 // DELETE setting by key
 router.delete('/:key', async (req, res) => {

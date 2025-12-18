@@ -29,6 +29,7 @@ app.use('/api/about-us', require('./routes/aboutUs'));
 app.use('/api/subscriptions', require('./routes/subscriptions'));
 app.use('/api/favourites', require('./routes/favourites'));
 app.use('/api/visitors', require('./routes/visitors'));
+app.use('/api/visitor-stats', require('./routes/visitorStats'));
 app.use('/api/settings', require('./routes/settings'));
 app.use('/api/inquiries', require('./routes/inquiries'));
 
