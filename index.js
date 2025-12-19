@@ -32,6 +32,8 @@ app.use('/api/visitors', require('./routes/visitors'));
 app.use('/api/visitor-stats', require('./routes/visitorStats'));
 app.use('/api/settings', require('./routes/settings'));
 app.use('/api/inquiries', require('./routes/inquiries'));
+app.use('/api/trends', require('./routes/trends'));
+
 
 
 app.get('/', (req, res) => {
